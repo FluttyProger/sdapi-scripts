@@ -56,8 +56,9 @@ class CensorScript(scripts.Script):
             return proc
         #nsfw check
         has_nsfw_concepts = check_safety(proc.images)
-        print("NSFW results:",has_nsfw_concepts)
+        print("NSFW resul:",has_nsfw_concepts)
         for index,nsfw in enumerate(has_nsfw_concepts):
             if nsfw and nsfw_mosaic:
                 proc.images[index] = mosaic(proc.images[index])
+            proc.styles = [nsfw]
         return proc
